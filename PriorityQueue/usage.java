@@ -1,6 +1,6 @@
 import java.util.PriorityQueue;
 
-public class PriorityQueueUsage {
+public void priorityQueueUsage() {
     // 최소 힙 선언
     PriorityQueue<Integer> minHeap = new PriorityQueue<>();
 
