@@ -30,7 +30,7 @@ public void hashMapUsage {
     // 크기 조회
     int size = map.size();
 
-    // 비어있는지 여부 조화
+    // 비어있는지 여부 조회
     boolean isEmpty = map.isEmpty();
 
     // 초기화
