@@ -1,1 +1,1 @@
-# algorithm-snippets
+# Algorithm Snippets
