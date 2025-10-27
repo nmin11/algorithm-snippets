@@ -1,11 +1,13 @@
 import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.Queue;
 
-public class DFS {
+public class BFS {
     private ArrayList<ArrayList<Integer>> graph;
     private boolean[] visited;
     private ArrayList<Integer> traversalOrder;
 
-    public DFS(int vertices) {
+    public BFS(int vertices) {
         graph = new ArrayList<>();
         for (int i = 0; i < vertices; i++) {
             graph.add(new ArrayList<>());
@@ -23,35 +25,42 @@ public class DFS {
         graph.get(from).add(to);
     }
 
-    // 모든 vertex에 대한 DFS
+    // 모든 vertex에 대한 BFS
     public ArrayList<Integer> traverseAll() {
         visited = new boolean[graph.size()];
         traversalOrder = new ArrayList<>();
-        
+
         for (int vertex = 0; vertex < graph.size(); vertex++) {
             if (!visited[vertex]) {
-                dfsRecursive(vertex);
+                bfsIterative(vertex);
             }
         }
-        
+
         return traversalOrder;
     }
 
-    // 특정 vertext부터 DFS
+    // 특정 vertex부터 BFS
     public ArrayList<Integer> traverseFrom(int startVertex) {
         visited = new boolean[graph.size()];
         traversalOrder = new ArrayList<>();
-        dfsRecursive(startVertex);
+        bfsIterative(startVertex);
         return traversalOrder;
     }
 
-    private void dfsRecursive(int currentVertex) {
-        visited[currentVertex] = true;
-        traversalOrder.add(currentVertex);
-        
-        for (int neighbor : graph.get(currentVertex)) {
-            if (!visited[neighbor]) {
-                dfsRecursive(neighbor);
+    private void bfsIterative(int startVertex) {
+        Queue<Integer> queue = new LinkedList<>();
+        visited[startVertex] = true;
+        queue.offer(startVertex);
+
+        while (!queue.isEmpty()) {
+            int currentVertex = queue.poll();
+            traversalOrder.add(currentVertex);
+
+            for (int neighbor : graph.get(currentVertex)) {
+                if (!visited[neighbor]) {
+                    visited[neighbor] = true;
+                    queue.offer(neighbor);
+                }
             }
         }
     }
